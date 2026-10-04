@@ -4,7 +4,7 @@ This is is my tutorial repo as I work through the book.
 
 ## Book Reference
 
-This project follows **[Embedded Rust](https://rust-embedded.org)'s** [Embedded Rust](https://docs.rust-embedded.org/book/), an introductory guide to using the Rust Programming Language on "Bare Metal" embedded systems and microcontrollers.
+This project follows **[Embedded Rust](https://rust-embedded.org)'s** [Embedded Rust](https://docs.rust-embedded.org/book/), an introductory guide to using the Rust Programming Language on "Bare Metal" embedded systems and microcontrollers. Like the book, this project uses the same [STM32F3DISCOVERY](https://www.st.com/en/evaluation-tools/stm32f3discovery.html) ARM64 microcontroller as the Embedded Rust book. 
 
 ## Environment setup
 
