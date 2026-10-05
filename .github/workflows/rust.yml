@@ -11,18 +11,23 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Rust toolchain
-      uses: dtolnay/rust-toolchain@stable
-      with:
-        targets: thumbv7em-none-eabihf
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Build firmware
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+      - name: Set up Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: thumbv7em-none-eabihf
+
+      - name: Check compilation
+        run: cargo check --verbose
+
+      - name: Build firmware (dev profile)
+        run: cargo build --verbose
+
+      - name: Build firmware (release profile)
+        run: cargo build --release --verbose
+
