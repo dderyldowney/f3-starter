@@ -1,0 +1,16 @@
+[target.thumbv7em-none-eabihf]
+# Flashes and starts execution via ST-LINK automatically on `cargo run`
+runner = "probe-rs run --chip STM32F303VCTx"
+
+rustflags = [
+  # Informs the linker to use the memory.x script provided by cortex-m-rt
+  "-C", "link-arg=-Tlink.x",
+]
+
+[build]
+# Default cross-compilation target
+target = "thumbv7em-none-eabihf"
+
+[env]
+# Sets defmt compile-time log level filter (options: trace, debug, info, warn, error, off)
+DEFMT_LOG = "debug"
