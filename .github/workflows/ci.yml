@@ -1,0 +1,42 @@
+name: Embedded CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        # The Cortex-M4F core on the STM32F3DISCOVERY requires this target
+        targets: thumbv7em-none-eabihf
+        components: llvm-tools-preview
+
+    - name: Cache Cargo dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cargo/registry
+          ~/.cargo/git
+          target
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+    - name: Install cargo-binutils
+      run: cargo install cargo-binutils
+
+    - name: Build firmware (Release)
+      run: cargo build --release --target thumbv7em-none-eabihf
+
+    - name: Audit Binary Size Allocation
+      # By passing the target and release profile, cargo-size knows exactly which artifact to read
+      run: cargo size --target thumbv7em-none-eabihf --release -- -A
+
