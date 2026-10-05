@@ -1,4 +1,4 @@
-name: Embedded CI
+name: CI
 
 on:
   push:
