@@ -17,8 +17,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Install ARM Cortex-M target
-      run: rustup target add thumbv7em-none-eabihf
+    - name: Set up Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        targets: thumbv7em-none-eabihf
+
     - name: Build firmware
       run: cargo build --verbose
     - name: Run tests
