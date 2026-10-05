@@ -1,7 +1,7 @@
 [package]
-name = "embedded_rust_book"
+name = "f3-starter"
 version = "0.1.0"
-edition = "2018"
+edition = "2024"
 
 [dependencies]
 # Enable single-core interrupt masking for critical sections
